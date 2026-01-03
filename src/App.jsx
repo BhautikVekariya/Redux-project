@@ -1,4 +1,3 @@
-import React from "react";
 import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage";
 import { Route, Routes } from "react-router-dom";

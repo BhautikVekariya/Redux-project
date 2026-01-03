@@ -25,10 +25,11 @@ const collectionSlice = createSlice({
 
         removeCollection: (state, action) => {
             state.items = state.items.filter(
-                item => item.id !== action.payload
+                (item) => item && item.id !== action.payload
             )
             localStorage.setItem('collection', JSON.stringify(state.items))
         },
+
         clearCollection: (state) => {
             state.items = []
             localStorage.removeItem('collection')
@@ -47,7 +48,7 @@ const collectionSlice = createSlice({
             });
         },
         removeToast: () => {
-            toast.error('🦄 Wow so easy!', {
+            toast.error('Remove From Collection ❌', {
                 position: "top-center",
                 autoClose: 3000,
                 hideProgressBar: false,
@@ -63,5 +64,5 @@ const collectionSlice = createSlice({
     }
 })
 
-export const { addCollection, removeCollection, clearCollection, addedToast,removeToast } = collectionSlice.actions;
+export const { addCollection, removeCollection, clearCollection, addedToast, removeToast } = collectionSlice.actions;
 export default collectionSlice.reducer;

@@ -1,18 +1,46 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import CollectionCard from '../components/CollectionCard'
+import { useDispatch, useSelector } from "react-redux";
+import CollectionCard from "../components/CollectionCard";
+import { clearCollection } from "../redux/features/collectionSlice";
 
 const CollectionPage = () => {
-  const collection = useSelector((state) => state.collection.items)
-  return (
-    <div className='w-[16vw] relative h-70 bg-white rounded-xl overflow-hidden '>
-      {collection.map((item,idx)=>{
-        return <div key={idx}>
-          <CollectionCard item={item}/>
-        </div>
-      })}      
-    </div>
-  )
-}
+  const collection = useSelector((state) => state.collection.items);
 
-export default CollectionPage
+  const dispatch = useDispatch();
+
+  const clearAll = () => {
+    dispatch(clearCollection());
+  };
+  return (
+    <div className="px-10 py-6 overflow-auto ">
+      {collection.length > 0 ? (
+        <div className="flex justify-between mb-6">
+          <h2 className="text-3xl font-medium">Your Collection</h2>
+          <button
+            onClick={() => {
+              clearAll();
+            }}
+            className="active:scale-95 transition cursor-pointer bg-red-500 px-8 py-3 text-lg font-medium rounded"
+          >
+            Clear Collection
+          </button>
+        </div>
+      ) : (
+        <h2 className="text-4xl text-gray-300 text-center font-medium">
+          Collection is Empty
+        </h2>
+      )}
+
+      <div className="flex justify-start w-full flex-wrap gap-6 ">
+        {collection.map((item, idx) => {
+          return (
+            <div key={idx}>
+              <CollectionCard item={item} />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default CollectionPage;

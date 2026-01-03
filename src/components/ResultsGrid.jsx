@@ -53,7 +53,7 @@ const ResultsGrid = () => {
             title: item.title || "GIF",
             thumbnail:
               item.media_formats?.tinygif?.url || item.media_formats?.gif?.url,
-            src: item.media_formats?.gif?.url, 
+            src: item.media_formats?.gif?.url,
             url: item.itemurl || item.url,
           }));
         }
@@ -73,7 +73,7 @@ const ResultsGrid = () => {
       {results.map((item, idx) => {
         return (
           <div key={idx}>
-            <ResultCard item={item} /> 
+            <ResultCard item={item} />
           </div>
         );
       })}
